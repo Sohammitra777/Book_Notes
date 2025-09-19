@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./build",
+    "module": "nodenext",
+    "target": "ES2022",
+    "types": [],
+    "esModuleInterop": true,
+    "strict": true, 
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true
+  },
+  "include": ["src/**/*"]
+}
