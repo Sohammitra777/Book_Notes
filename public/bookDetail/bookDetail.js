@@ -1,18 +1,5 @@
 const url = "http://localhost:3000"; 
 
-const viewEdit = document.querySelector("#viewEdit > button")
-viewEdit.addEventListener("click", () => window.location.href = 'bookDetail/bookDetail.html'); 
-
-async function viewAndEditContent(id){
-    window.location.href = `noteDetail/noteDetail.html?id=${id}`;
-}
-
-async function deleteBook(id){
-    const response = await fetch(url + '/deleteBook/' + id, {method:'DELETE'}); 
-    const data = await response.json();
-    console.log(data.deleted); 
-}
-
 function bookDivCreation(data){ 
     //console.log(data); 
     //div creation
@@ -50,21 +37,14 @@ function bookDivCreation(data){
     //adding event Listner
     editButton.addEventListener("click", () => viewAndEditContent(data.id)); 
     deleteButton.addEventListener("click", () => deleteBook(data.id));
-
 }
 
-export async function fetchUserDetail(){
+async function fetchUserDetail(){
     const response = await fetch(url + '/details');
     const data = await response.json();
-    for(let i = 0; i<3; i++)  {
-        if(data.users[i] === undefined) break;
-        bookDivCreation(data.users[i]);   
-    }; 
-    //data.users.forEach(element =>  bookDivCreation(element.id, element.bookName));
+    data.users.forEach(element => {
+        bookDivCreation(element); 
+    });
 }
 
 fetchUserDetail(); 
-
-
-
-
