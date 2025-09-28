@@ -1,4 +1,6 @@
 import { Request, Response} from "express";
+import { insertBook } from "../db/querie.js";
+
 
 export interface User{
     id : number, 
@@ -40,6 +42,17 @@ export function getBookDetail(req : Request<{id : string}>, res : Response){
         value : storage[index]
     });
 }
+
+
+//POST ROUTES
+export async function postUser(req: Request<{}, {}, {bookName : string, note : string, rating : number}, {}>, res : Response){
+    const {bookName, note, rating} = req.body; 
+    console.log(req.body); 
+    insertBook(bookName, note, rating); 
+    
+    res.status(200).redirect('/'); 
+}
+
 
 //DELETE ROUTES
 export function deleteBook(req : Request<{id : string}>, res : Response){

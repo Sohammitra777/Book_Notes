@@ -13,17 +13,25 @@
     <!--Book Creation Div-->
     <div id="bookCreation">
         <h3>NEW BOOK</h3>
-        <form action="" method="post">
-            <label for="newBook"></label>
-            <input id="newBook" type="text" placeholder="Type Book Name">
-            <label for="rating">RATE : </label>
-            <select id = "rating">
-                <option value = "oneStar" selected>1</option>
-                <option value = "twoStar">2</option>
-                <option value = "threeStar">3</option>
-                <option value = "fourStar">4</option>
-                <option value = "fiveStar">5</option>
+        <form action="http://localhost:3000/submitbook" method="post">
+            <!--Book name-->
+            <label for="newBook">Book Name:</label>
+            <input id="newBook" name="bookName" type="text">
+
+            <!--Book notes-->
+            <label for="note">Write Down Your Note...</label>
+            <input type="text" name="note" id="note">
+
+            <!--Rating-->
+            <label for="rating">RATE:</label>
+            <select id="rating" name="rating">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
+
             <button type="submit">Create New Book</button>
         </form>
     </div>
