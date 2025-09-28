@@ -11,9 +11,11 @@ async function fetchBookDetail(){
     const id = params.get("id");
     const response = await fetch(`http://localhost:3000/bookdetail/${id}`); 
     const data = await response.json(); 
-    data.value.values.forEach(element => {
-        notesDetailCreation(element); 
-    });
+    // data.value.values.forEach(element => {
+    //     notesDetailCreation(element); 
+    // });
+    // console.log(data); 
+    notesDetailCreation(data.value.rows[0].note); 
 }
 
 fetchBookDetail(); 

@@ -30,10 +30,10 @@ function bookDivCreation(data){
     const deleteButton = document.createElement("button");
 
     //including contents
-    head.textContent = data.bookName; 
+    head.textContent = data.name; 
     rateHead.textContent = "Rating : "
-    ratePara.textContent = data.Rating; 
-    editButton.textContent = "View/Edit Book"
+    ratePara.textContent = data.rating; 
+    editButton.textContent = "View Note"
     deleteButton.textContent = "Delete Book"; 
 
     //appending division childs
@@ -55,12 +55,12 @@ function bookDivCreation(data){
 
 export async function fetchUserDetail(){
     const response = await fetch(url + '/details');
-    const data = await response.json();
+    const data = await response.json(); 
     for(let i = 0; i<3; i++)  {
-        if(data.users[i] === undefined) break;
+        if(data.users[i] === undefined) break; 
         bookDivCreation(data.users[i]);   
     }; 
-    //data.users.forEach(element =>  bookDivCreation(element.id, element.bookName));
+    // data.users.forEach(element =>  bookDivCreation(element));
 }
 
 fetchUserDetail(); 

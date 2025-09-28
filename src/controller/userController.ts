@@ -1,5 +1,5 @@
 import { Request, Response} from "express";
-import { insertBook } from "../db/querie.js";
+import { insertBook, selectBook, selectBookNumber } from "../db/querie.js";
 
 
 export interface User{
@@ -25,29 +25,32 @@ const storage : User[] = [
 ];
 
 //GET ROUTES
-export function getUserDetails(req : Request, res : Response){
+export async function getUserDetails(req : Request, res : Response){
+    const result = await selectBook();
+    // console.log(result.rows); 
+
     res.status(200).json({
-        users : storage
+        users : result.rows
     }); 
 }
 
-export function getBookDetail(req : Request<{id : string}>, res : Response){
+export async function getBookDetail(req : Request<{id : string}>, res : Response){
     const searchId : number  = parseInt(req.params.id); 
 
-    const index : number | undefined = storage.findIndex(user => user.id ===  searchId );
+    const note : number | undefined = await selectBookNumber(searchId);
     
-    if(index === undefined) return res.status(404).json({ error : "Data not found"}); 
-    console.log(index); 
+    if(note === undefined) return res.status(404).json({ error : "Data not found"}); 
+    // console.log(index); 
     res.status(200).json({
-        value : storage[index]
+        value : note
     });
 }
 
 
 //POST ROUTES
-export async function postUser(req: Request<{}, {}, {bookName : string, note : string, rating : number}, {}>, res : Response){
+export function postUser(req: Request<{}, {}, {bookName : string, note : string, rating : number}, {}>, res : Response){
     const {bookName, note, rating} = req.body; 
-    console.log(req.body); 
+    
     insertBook(bookName, note, rating); 
     
     res.status(200).redirect('/'); 
