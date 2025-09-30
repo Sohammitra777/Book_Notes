@@ -1,13 +1,31 @@
 const url = "http://localhost:3000"; 
 
-const viewEdit = document.querySelector("#viewEdit > button")
+const viewEdit = document.querySelector("#viewEdit > button"); 
 viewEdit.addEventListener("click", () => window.location.href = 'bookDetail/bookDetail.html'); 
+
+const sortPost = document.querySelector("#sort"); 
+sortPost.addEventListener("click", () => {
+    if(sortPost.textContent === "SORT BY : Rating"){
+        sortPost.textContent = "SORT BY : A to Z"; 
+        const parentDiv = document.getElementById('main');
+        parentDiv.innerHTML = '';   
+        fetchUserDetail('/ratingDetails'); 
+    }
+    else{
+        sortPost.textContent = "SORT BY : Rating"; 
+        const parentDiv = document.getElementById('main');
+        parentDiv.innerHTML = '';   
+        fetchUserDetail('/atozDetails');
+    }
+})
 
 async function viewAndEditContent(id){
     window.location.href = `noteDetail/noteDetail.html?id=${id}`;
 }
 
 async function deleteBook(id){
+    const theDiv = document.getElementById(id);
+    theDiv.remove(); 
     const response = await fetch(url + '/deleteBook/' + id, {method:'DELETE'}); 
     const data = await response.json();
     console.log(data.deleted); 
@@ -44,7 +62,7 @@ function bookDivCreation(data){
     division.append(deleteButton);
 
     //inserting inside parent div
-    const select = document.getElementById("bookShown");  
+    const select = document.getElementById("main");  
     select.append(division); 
 
     //adding event Listner
@@ -53,8 +71,8 @@ function bookDivCreation(data){
 
 }
 
-export async function fetchUserDetail(){
-    const response = await fetch(url + '/details');
+export async function fetchUserDetail(getRequest){
+    const response = await fetch(url + getRequest);
     const data = await response.json(); 
     for(let i = 0; i<3; i++)  {
         if(data.users[i] === undefined) break; 
@@ -63,7 +81,7 @@ export async function fetchUserDetail(){
     // data.users.forEach(element =>  bookDivCreation(element));
 }
 
-fetchUserDetail(); 
+fetchUserDetail('/atozDetails'); 
 
 
 

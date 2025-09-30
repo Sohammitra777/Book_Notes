@@ -1,33 +1,19 @@
 import { Request, Response} from "express";
-import { insertBook, selectBook, selectBookNumber } from "../db/querie.js";
-
-
-export interface User{
-    id : number, 
-    bookName : string,
-    values : string[], 
-    Rating : number
-}
-const storage : User[] = [
-    {
-        id : 1, 
-        bookName : "INR1",
-        values : ["ABC", "bcd", "dev"], 
-        Rating : 5
-    }, 
-    {
-        id : 2, 
-        bookName : "DOLLAR2",
-        values : ["a", "b"], 
-        Rating : 3
-    }
-
-];
+import { deleteSelectedBook, insertBook, selectBookAtoZ, selectBookNumber, selectBookRating } from "../db/querie.js";
 
 //GET ROUTES
-export async function getUserDetails(req : Request, res : Response){
-    const result = await selectBook();
-    // console.log(result.rows); 
+export async function getUserDetailsAtoZ(req : Request, res : Response){
+    const result = await selectBookAtoZ();
+    //console.log(result); 
+
+    res.status(200).json({
+        users : result.rows
+    }); 
+}
+
+export async function getUserDetailsRating(req : Request, res : Response){
+    const result = await selectBookRating();
+    console.log(result.rows); 
 
     res.status(200).json({
         users : result.rows
@@ -57,11 +43,16 @@ export function postUser(req: Request<{}, {}, {bookName : string, note : string,
 }
 
 
-//DELETE ROUTES
+//DELETE ROUTE
 export function deleteBook(req : Request<{id : string}>, res : Response){
     const id : number = parseInt(req.params.id);
-    const index = storage.findIndex(element => element.id === id); 
-    res.status(200).json({
-        deleted : `Successfully deleted with index : ${index}`
-    })
+
+    deleteSelectedBook(id); 
+
+    // const index = storage.findIndex(element => element.id === id); 
+    // res.status(200).json({
+    //     deleted : `Successfully deleted with index : ${index}`
+    // })
+
+    res.status(200).json("Deleted"); 
 }

@@ -13,14 +13,30 @@ export async function insertBook(name : string, note : string,  rating : number)
     ); 
 }
 
-export async function selectBook(){
+export async function selectBookAtoZ(){
     return await pool.query(
-        "SELECT books.id, books.name, notes.note, notes.rating FROM books JOIN notes ON books.id = notes.id"
+        "SELECT books.id, books.name, notes.note, notes.rating FROM books JOIN notes ON books.id = notes.id ORDER BY books.name ASC"
     ); 
 }
+
+export async function selectBookRating() {
+    return await pool.query(
+        "SELECT books.id, books.name, notes.note, notes.rating FROM books JOIN notes ON books.id = notes.id ORDER BY notes.rating DESC"
+    ); 
+}
+
 
 export async function selectBookNumber(id : number) {
     return await pool.query(
         "SELECT notes.note FROM books JOIN notes ON books.id = notes.id WHERE books.id = $1", [id]
     )
+}
+
+export async function deleteSelectedBook(id : number) {
+    await pool.query(
+        "DELETE FROM notes WHERE id = $1", [id]
+    );
+    await pool.query(
+        "DELETE FROM books WHERE id = $1", [id]
+    );  
 }
