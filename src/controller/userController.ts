@@ -13,7 +13,7 @@ export async function getUserDetailsAtoZ(req : Request, res : Response){
 
 export async function getUserDetailsRating(req : Request, res : Response){
     const result = await selectBookRating();
-    console.log(result.rows); 
+    //console.log(result.rows); 
 
     res.status(200).json({
         users : result.rows
