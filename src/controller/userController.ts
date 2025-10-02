@@ -1,5 +1,5 @@
 import { Request, Response} from "express";
-import { deleteSelectedBook, insertBook, selectBookAtoZ, selectBookNumber, selectBookRating } from "../db/querie.js";
+import { deleteNoteFromBook, deleteSelectedBook, insertBook, insertNote, selectBookAtoZ, selectBookRating, selectNote } from "../db/querie.js";
 
 //GET ROUTES
 export async function getUserDetailsAtoZ(req : Request, res : Response){
@@ -20,26 +20,49 @@ export async function getUserDetailsRating(req : Request, res : Response){
     }); 
 }
 
-export async function getBookDetail(req : Request<{id : string}>, res : Response){
-    const searchId : number  = parseInt(req.params.id); 
+// export async function getBookDetail(req: Request<{ id: string }>, res: Response) {
+//     const searchId: number = parseInt(req.params.id);
 
-    const note : number | undefined = await selectBookNumber(searchId);
-    
-    if(note === undefined) return res.status(404).json({ error : "Data not found"}); 
-    // console.log(index); 
+//     const note = await selectBookNumber(searchId);
+
+//     if (note === undefined) {
+//         return res.status(404).json({ error: "Data not found" });
+//     }
+
+//     res.status(200).json({
+//         value: note
+//     });
+// }
+
+export async function getNote(req : Request<{id : string}>, res : Response){
+    const searchId: number = parseInt(req.params.id);
+
+    const note  = await selectNote(searchId); 
+    console.log(note.rows)
+
+    if (note === undefined) {
+        return res.status(404).json({ error: "Data not found" });
+    }
     res.status(200).json({
-        value : note
+        value: note
     });
 }
 
-
 //POST ROUTES
-export function postUser(req: Request<{}, {}, {bookName : string, note : string, rating : number}, {}>, res : Response){
-    const {bookName, note, rating} = req.body; 
-    
-    insertBook(bookName, note, rating); 
+export function postUser(req: Request<{}, {}, {bookName : string, rating : number}, {}>, res : Response){
+    const {bookName, rating} = req.body; 
+    console.log(req.body); 
+    insertBook(bookName, rating); 
     
     res.status(200).redirect('/'); 
+}
+
+export function newNote(req : Request<{}, {}, {id : number, note : string}>, res : Response){
+    const {id , note} = req.body; 
+    
+    insertNote(id, note); 
+
+    res.status(200); 
 }
 
 
@@ -55,4 +78,12 @@ export function deleteBook(req : Request<{id : string}>, res : Response){
     // })
 
     res.status(200).json("Deleted"); 
+}
+
+export function deleteNote(req : Request<{id : string}>, res : Response){
+    const id : number = parseInt(req.params.id); 
+
+    deleteNoteFromBook(id); 
+
+    res.status(200).json("Note Deleted"); 
 }

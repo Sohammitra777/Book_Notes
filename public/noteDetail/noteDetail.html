@@ -6,7 +6,18 @@
     <title>Document</title>
 </head>
 <body>
-    <div id = "noteDetail"></div>
+    <div id = "noteDetail">
+    </div>
+
+    <div id="plus">
+        <form action="/noteSubmit" method="POST" target="blank">
+            <input type="hidden" name="id" id="noteId" />
+            <label for="note">New Note : </label>
+            <textarea name="note" id="note"></textarea>
+            <button type="submit">+</button>
+        </form>
+        
+    </div>
     <script type = "module" src = "notedetail.js"></script>
 </body>
 </html>

@@ -1,16 +1,18 @@
 import express, { IRouter } from "express"; 
-import { getUserDetailsAtoZ , getBookDetail, postUser, deleteBook, getUserDetailsRating} from "../controller/userController.js";
+import { getUserDetailsAtoZ, postUser, deleteBook, getUserDetailsRating, newNote, getNote, deleteNote} from "../controller/userController.js";
 const router : IRouter = express.Router(); 
 
 //GET Routes
 router.get('/atozDetails', getUserDetailsAtoZ)
 router.get('/ratingDetails', getUserDetailsRating)
-router.get('/bookDetail/:id', getBookDetail); 
+// router.get('/bookDetail/:id', getBookDetail); 
+router.get('/noteDetail/:id', getNote)
 
 //POST Routes
 router.post('/submitbook', postUser)
-
+router.post('/noteSubmit', newNote)
 //DELETE ROUTES
-router.delete('/deleteBook/:id', deleteBook); 
+router.delete('/deleteBook/:id', deleteBook);
+router.delete('/deleteNote/:id', deleteNote); 
 
 export default router; 
