@@ -1,20 +1,22 @@
 const url = "http://localhost:3000"; 
 
 const sortPost = document.querySelector("#sort"); 
+const parentDiv = document.getElementById("main");
 sortPost.addEventListener("click", () => {
-    if(sortPost.textContent === "SORT BY : Rating"){
-        sortPost.textContent = "SORT BY : A to Z"; 
-        const parentDiv = document.getElementById('main');
-        parentDiv.innerHTML = '';   
-        fetchUserDetail('/ratingDetails'); 
-    }
-    else{
-        sortPost.textContent = "SORT BY : Rating"; 
-        const parentDiv = document.getElementById('main');
-        parentDiv.innerHTML = '';   
-        fetchUserDetail('/atozDetails');
-    }
-})
+    parentDiv.classList.add("fade-out");
+    setTimeout(() => {
+        parentDiv.innerHTML = "";
+
+        if(sortPost.textContent === "SORT BY : Rating"){
+            sortPost.textContent = "SORT BY : A to Z"; 
+            fetchUserDetail('/ratingDetails', true); 
+        } else {
+            sortPost.textContent = "SORT BY : Rating"; 
+            fetchUserDetail('/atozDetails', true);
+        }
+        parentDiv.classList.remove("fade-out");
+    }, 300); 
+});
 
 async function viewAndEditContent(id){
     window.location.href = `/noteDetail/noteDetail.html?id=${id}`;
@@ -24,8 +26,9 @@ async function deleteBook(id){
     const theDiv = document.getElementById(id);
     theDiv.remove(); 
     const response = await fetch(url + '/deleteBook/' + id, {method:'DELETE'}); 
-    const data = await response.json();
-    console.log(data.deleted); 
+    //const data = await response.json();
+    location.reload(); 
+    //console.log(data.deleted); 
 }
 
 function bookDivCreation(data){ 
@@ -33,26 +36,32 @@ function bookDivCreation(data){
     //div creation
     const division = document.createElement("div");
     
-    //setting Attribute
-    division.setAttribute("class", "books");
-    division.setAttribute("id", data.id); 
+    
 
     //div child creation
-    const head = document.createElement("h4");
-    const rateHead = document.createElement("h4"); 
-    const ratePara = document.createElement("p"); 
+    const seperationDiv1 = document.createElement("div"); 
+    const seperationDiv2 = document.createElement("div"); 
+    const head = document.createElement("h2");
+    const rateHead = document.createElement("h4");
     const editButton = document.createElement("button");
     const deleteButton = document.createElement("button");
 
+    //setting Attribute
+    division.setAttribute("class", "books");
+    division.setAttribute("id", data.id); 
+    seperationDiv1.setAttribute("class", "div1"); 
+    seperationDiv2.setAttribute("class", "div2"); 
+
     //including contents
     head.textContent = data.name; 
-    rateHead.textContent = "Rating : "
-    ratePara.textContent = data.rating; 
+    rateHead.textContent = "Rating : " + data.rating; 
     editButton.textContent = "View Note"
     deleteButton.textContent = "Delete Book"; 
 
     //appending division childs
-    division.append(head, rateHead, ratePara, editButton, deleteButton); 
+    seperationDiv1.append(head, rateHead); 
+    seperationDiv2.append(editButton, deleteButton); 
+    division.append(seperationDiv1, seperationDiv2); 
 
     //inserting inside parent div
     const select = document.getElementById("main");  
