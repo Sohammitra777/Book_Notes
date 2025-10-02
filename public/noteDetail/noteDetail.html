@@ -10,13 +10,9 @@
     </div>
 
     <div id="plus">
-        <form action="/noteSubmit" method="POST" target="blank">
-            <input type="hidden" name="id" id="noteId" />
-            <label for="note">New Note : </label>
-            <textarea name="note" id="note"></textarea>
-            <button type="submit">+</button>
-        </form>
-        
+        <label for="note">New Note : </label>
+        <textarea name="note" id="note" placeholder="required field"></textarea>
+        <button id="plusButton">+</button>
     </div>
     <script type = "module" src = "notedetail.js"></script>
 </body>

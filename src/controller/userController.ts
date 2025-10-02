@@ -50,7 +50,7 @@ export async function getNote(req : Request<{id : string}>, res : Response){
 
 //POST ROUTES
 export function postUser(req: Request<{}, {}, {bookName : string, rating : number}, {}>, res : Response){
-    const {bookName, rating} = req.body; 
+    const {bookName,rating} = req.body; 
     console.log(req.body); 
     insertBook(bookName, rating); 
     
@@ -59,10 +59,10 @@ export function postUser(req: Request<{}, {}, {bookName : string, rating : numbe
 
 export function newNote(req : Request<{}, {}, {id : number, note : string}>, res : Response){
     const {id , note} = req.body; 
-    
+    //console.log(req.body); 
     insertNote(id, note); 
 
-    res.status(200); 
+    res.status(200).json("Note Added"); 
 }
 
 
