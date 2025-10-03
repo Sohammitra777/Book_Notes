@@ -3,6 +3,26 @@
 **Books Notes** is a simple web application to manage books and their associated notes. Users can add, view, and delete books, as well as add and delete notes for each book. The app supports sorting books by name (A-Z) or rating.
 
 ---
+## Project Vision / Next Steps  
+
+This project was intentionally built using **vanilla JavaScript, HTML, CSS, Express, and PostgreSQL** to strengthen core full-stack fundamentals without relying on heavy frameworks.  
+
+### Why?  
+- To gain a **deep understanding of DOM manipulation, events, and rendering** before transitioning to modern frontend frameworks.  
+- To practice **database integration, query structuring, and error handling** directly with PostgreSQL.  
+- To build confidence in structuring a project with **controllers, routes, and services** in Express.  
+
+### Next Steps  
+The next phase of this learning journey will focus on:  
+- Exploring modern frontend frameworks for scalability.  
+- Enhancing the overall UI/UX with improved styling approaches.  
+- Introducing automated testing for better reliability.  
+- Improving performance by optimizing how updates are handled.  
+- Learning deployment workflows and CI/CD practices.  
+
+This project marks the **final step of building fundamentals**, while the upcoming React + TypeScript project will demonstrate applying those fundamentals in a **modern full-stack environment**.  
+
+---
 
 ## 🌟 Features
 
@@ -158,4 +178,17 @@ books-notes/
 ```
 
 ## 📜 License
-No license created — this project is only for **learning purposes**.  
+No license created — this project is only for **learning purposes**.
+
+---
+
+## 🙏 Thanks for Reading  
+
+Thank you for taking the time to explore **Books Notes**.  
+This project was built as a step in my learning journey to strengthen **full-stack fundamentals** before moving on to more modern stacks with **React + TypeScript**.  
+
+Any feedback, suggestions, or contributions are always welcome 🚀  
+
+
+
+
