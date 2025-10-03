@@ -1,81 +1,46 @@
 import { url } from "../util/util.js";
 
- 
+const getId = () => new URLSearchParams(window.location.search).get("id");
 
-async function deleteButton(id){
-    const element = document.getElementById(id)
-    element.remove();
-    await fetch(url + '/deleteNote/' + id, {method:"DELETE"}); 
+async function deleteButton(id) {
+  document.getElementById(id)?.remove();
+  await fetch(`${url}/deleteNote/${id}`, { method: "DELETE" });
 }
 
-function notesDetailCreation(id, element){
-    //div creation
-    const division = document.createElement("div"); 
-    division.setAttribute("class", "notes");
-    division.setAttribute("id", id); 
+function notesDetailCreation(id, note) {
+  const division = Object.assign(document.createElement("div"), { className: "notes", id });
+  const paragraph = Object.assign(document.createElement("p"), { textContent: note });
+  const button = Object.assign(document.createElement("button"), { textContent: "Delete" });
 
-    const paragraph = document.createElement("p");
-    paragraph.textContent = element;
-
-    const button = document.createElement("button"); 
-    button.textContent = "Delete";
-    button.addEventListener("click", ()=> deleteButton(id));  
-
-
-    division.append(paragraph, button); 
-    const select = document.getElementById("noteDetail"); 
-    select.append(division); 
+  button.addEventListener("click", () => deleteButton(id));
+  division.append(paragraph, button);
+  document.getElementById("noteDetail").append(division);
 }
 
-function getId(){
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-    return id; 
+async function fetchBookDetail() {
+  const { value: { rows } } = await (await fetch(`${url}/noteDetail/${getId()}`)).json();
+  rows.forEach(({ id, note }) => notesDetailCreation(id, note));
 }
 
-async function fetchBookDetail(){
-    const id = getId(); 
-    const response = await fetch(`http://localhost:3000/noteDetail/${id}`); 
-    const data = await response.json(); 
-    //console.log(data.value.rows[0]); 
-    data.value.rows.forEach(element => {
-        notesDetailCreation(element.id, element.note); 
-    }); 
+async function plus(note) {
+  await fetch(`${url}/noteSubmit`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id: getId(), note })
+  });
 }
 
-async function plus(value){
-    await fetch(
-        url + '/noteSubmit', 
-        {
-            method : "POST", 
-            headers : {
-                'Content-Type' : 'application/json'
-            },
-            body : JSON.stringify({
-                id : getId(), 
-                note : value
-            })
+function addingNote() {
+  const plusButton = document.getElementById("plusButton");
+  const text = document.getElementById("note"); 
 
-        }
-    )
-}
-
-function addingNote(){
-    const plusButton = document.getElementById("plusButton");
-    const text = document.getElementById("note"); 
-    
-    plusButton.addEventListener("click", () => {
-        if(text.value == "") alert("Please fill the required field"); 
-        else{
-            plus(text.value);
-            setTimeout(() => {
-                location.reload();
-            }, 5000);
-        }    
-    })
+  plusButton.addEventListener("click", async () => {
+    if (!text.value.trim()) return alert("Please fill the required field");
+    await plus(text.value);
+    setTimeout(() => location.reload(), 2000);
     text.value = ""; 
+  });
 }
 
-addingNote(); 
-
-fetchBookDetail(); 
+addingNote();
+fetchBookDetail();

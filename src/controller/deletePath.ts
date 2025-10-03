@@ -1,23 +1,35 @@
-import { Request, Response} from "express";
+import { Request, Response } from "express";
 import { deleteSelectedBook, deleteNoteFromBook } from "../db/querie.js";
 
-export function deleteBook(req : Request<{id : string}>, res : Response){
-    const id : number = parseInt(req.params.id);
+const handleError = (res: Response, error: unknown, message = "Internal Server Error") => {
+  console.error(message, error);
+  res.status(500).json({ success: false, error: message });
+};
 
-    deleteSelectedBook(id); 
+export function deleteBook(req: Request<{ id: string }>, res: Response) {
+  try {
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id)) {
+      return res.status(400).json({ success: false, error: "Invalid book ID" });
+    }
 
-    // const index = storage.findIndex(element => element.id === id); 
-    // res.status(200).json({
-    //     deleted : `Successfully deleted with index : ${index}`
-    // })
-
-    res.status(200).json("Deleted"); 
+    deleteSelectedBook(id); // still returns void
+    res.status(200).json({ success: true, message: "Book deleted" });
+  } catch (error) {
+    handleError(res, error, "Failed to delete book");
+  }
 }
 
-export function deleteNote(req : Request<{id : string}>, res : Response){
-    const id : number = parseInt(req.params.id); 
+export function deleteNote(req: Request<{ id: string }>, res: Response) {
+  try {
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id)) {
+      return res.status(400).json({ success: false, error: "Invalid note ID" });
+    }
 
-    deleteNoteFromBook(id); 
-
-    res.status(200).json("Note Deleted"); 
+    deleteNoteFromBook(id); // still returns void
+    res.status(200).json({ success: true, message: "Note deleted" });
+  } catch (error) {
+    handleError(res, error, "Failed to delete note");
+  }
 }
