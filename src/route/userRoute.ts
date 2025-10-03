@@ -1,5 +1,5 @@
 import express, { IRouter } from "express"; 
-import { getUserDetailsAtoZ, postUser, deleteBook, getUserDetailsRating, newNote, getNote, deleteNote} from "../controller/userController.js";
+import { getUserDetailsAtoZ, postUser, deleteBook, getUserDetailsRating, newNote, getNote, deleteNote} from "../controller/index.js";
 const router : IRouter = express.Router(); 
 
 //GET Routes
