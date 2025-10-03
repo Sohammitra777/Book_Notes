@@ -95,8 +95,11 @@ Then open your browser and go to:
 
 ## 📸 Screenshots
 
+**Homepage Screenshot**
 ![Homepage Screenshot](public/images/Homepage.png)  
-![All Books Page Screenshot](public/images/allbooks.png)  
+**All Books Page Screenshot**
+![All Books Page Screenshot](public/images/allbooks.png) 
+**All Notes of selected Books Screenshort** 
 ![All Notes of That particular Books Screenshort](public/images/allnotes.png)
 
 ---
