@@ -28,7 +28,7 @@
 
 ### 1. Setup PostgreSQL
 
-1. **Install PostgreSQL and pgAdmin:**  
+1. **Install PostgreSQL**  
    [Download PostgreSQL](https://www.postgresql.org/download/) and follow instructions for your OS.  
 
 2. **Create Database:**  
@@ -37,7 +37,7 @@
    - Import `note_sampler.csv` into the `notes` table.  
 
 3. **Verify Connection:**  
-   - Check using pgAdmin or `psql`.
+   - Check using pgAdmin.
 
   
 ### 2. Setup Node.js & NPM
@@ -95,11 +95,11 @@ Then open your browser and go to:
 
 ## 📸 Screenshots
 
-**Homepage Screenshot**
+1. **Homepage Screenshot**
 ![Homepage Screenshot](public/images/Homepage.png)  
-**All Books Page Screenshot**
+2. **All Books Page Screenshot**
 ![All Books Page Screenshot](public/images/allbooks.png) 
-**All Notes of selected Books Screenshort** 
+3. **All Notes of selected Books Screenshort** 
 ![All Notes of That particular Books Screenshort](public/images/allnotes.png)
 
 ---
