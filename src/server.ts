@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import userRoute from "./route/userRoute.js";
-const PORT : number = 3000; 
+const PORT = 3000; 
 const app : Application = express();  
 
 
