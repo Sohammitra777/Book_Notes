@@ -54,7 +54,9 @@ form > input {
     background-color: #ffdbb6;
     border-style: none;
     border-radius: 5px;
-    padding: 1rem 5rem 1rem 5rem;
+    width: 20rem;
+    padding: .5rem; 
+    height: 1rem;
 }
 form > textarea {
     background-color: #ffdbb6;

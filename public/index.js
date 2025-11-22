@@ -5,7 +5,7 @@ setInterval(() => {
 }, 15 * 60 * 1000);
 
 const form = document.getElementById("form");
-form.setAttribute("action", url + "/submit");
+form.setAttribute("action", url + "/submitbook");
 
 const sortPost = document.querySelector("#sort");
 const parentDiv = document.getElementById("main");
