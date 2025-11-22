@@ -45,5 +45,5 @@ export async function deleteNoteFromBook(id: number) {
 }
 
 export async function querySanitize() {
-    await pool.query("TRUNCATE TABLE notes, books RESTART IDENTITY")
+    await pool.query("TRUNCATE TABLE notes, books RESTART IDENTITY");
 }

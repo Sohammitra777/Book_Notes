@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { deleteSelectedBook, deleteNoteFromBook, querySanitize } from "../db/querie.js";
+import {
+    deleteSelectedBook,
+    deleteNoteFromBook,
+    querySanitize,
+} from "../db/querie.js";
 
 const handleError = (
     res: Response,
@@ -45,9 +49,8 @@ export function deleteNote(req: Request<{ id: string }>, res: Response) {
 export function sanitized(req: Request, res: Response) {
     try {
         querySanitize();
-        res.status(200).json({"message": "turnicated successfully"})
-    } 
-    catch(err){
-        res.status(404).json({"message": `problem occured : ${err}`})
+        res.status(200).json({ message: "turnicated successfully" });
+    } catch (err) {
+        res.status(404).json({ message: `problem occured : ${err}` });
     }
 }

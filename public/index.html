@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Notes</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!--Header Section-->
-    <header>Book Notes</header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Book Notes</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!--Header Section-->
+        <header>Book Notes</header>
 
-    <main>
-        <!--Book Creation Div-->
-        <div id="bookCreation">
-            <h3>NEW BOOK</h3>
-            <form id="form" method="post">
-                <!--Book name-->
-                <label for="newBook"></label>
-                <input id="newBook" name="bookName" type="text" required>
-                
-                <div class="inline-row">
-                    <label for="rating">RATING : </label>
-                    <select id="rating" name="rating" required>
-                        <option value="1" selected>1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+        <main>
+            <!--Book Creation Div-->
+            <div id="bookCreation">
+                <h3>NEW BOOK</h3>
+                <form id="form" method="post">
+                    <!--Book name-->
+                    <label for="newBook"></label>
+                    <input id="newBook" name="bookName" type="text" required />
+
+                    <div class="inline-row">
+                        <label for="rating">RATING : </label>
+                        <select id="rating" name="rating" required>
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <!--Rating-->
+                    <button type="submit">Create New Book</button>
+                </form>
+            </div>
+
+            <!--Book Showing Div - New Note, Delete, Edit-->
+            <div id="bookShown">
+                <!--View and Sort-->
+                <div id="viewEdit">
+                    <h4>VIEW ALL BOOKS</h4>
+                    <button id="sort">SORT BY : Rating</button>
                 </div>
-                <!--Rating-->
-                <button type="submit">Create New Book</button>
-            </form>
-        </div>
 
-        <!--Book Showing Div - New Note, Delete, Edit-->
-        <div id="bookShown" >
-            <!--View and Sort-->
-            <div id="viewEdit">
-                <h4>VIEW ALL BOOKS</h4>
-                <button id = "sort">SORT BY : Rating</button>
-            </div>
-            
-            <div id = "main">
-
-            </div>
-            <!--Showing books and Fuinctions
+                <div id="main"></div>
+                <!--Showing books and Fuinctions
             <div class="books">
                 <h4>Book Name</h4>
                 <h4>Rating : <h4>
@@ -53,21 +51,24 @@
                 <button>View/Edit Book</button>
                 <button>Delete Book</button>
             </div>
-            -->
+            --></div>
+        </main>
+        <footer>
+            <div class="footer-container">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li>© 2025 Book Note | All right reserved</li>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://github.com/Sohammitra777/Book_Notes"
+                            >GitHub</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </footer>
 
-        </div>
-    </main>
-    <footer>
-        <div class="footer-container">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li>© 2025 Book Note | All right reserved</li>
-                <li><a target ="_blank" href="https://github.com/Sohammitra777/Book_Notes">GitHub</a></li>
-                
-            </ul>
-        </div>
-    </footer>
-
-    <script type = "module" src="index.js"></script>
-</body>
+        <script type="module" src="index.js"></script>
+    </body>
 </html>

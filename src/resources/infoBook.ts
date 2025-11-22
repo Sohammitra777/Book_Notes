@@ -6,4 +6,4 @@ const books = [
     { name: "The Alchemist", rating: 4 },
 ];
 
-export default books; 
+export default books;
