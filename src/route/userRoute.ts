@@ -30,6 +30,6 @@ setInterval(async () => {
     console.log("sanatized"); 
     await initilized(); 
     console.log("working"); 
-}, .5 * 60 * 1000);
+}, 15 * 60 * 1000);
 
 export default router;

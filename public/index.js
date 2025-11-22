@@ -2,6 +2,7 @@ import { fetchUserDetail, url } from "./util/util.js";
 
 setInterval(() => {
     window.location.reload();
+    alert("Data Reset Done"); 
 }, 15 * 60 * 1000);
 
 const form = document.getElementById("form");
