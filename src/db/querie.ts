@@ -9,7 +9,7 @@ export async function insertBook(name: string, rating: number) {
 }
 
 export async function insertNote(id: number, note: string) {
-    return await pool.query(
+    await pool.query(
         "INSERT INTO notes (note_id, note) VALUES ($1, $2)",
         [id, note]
     );

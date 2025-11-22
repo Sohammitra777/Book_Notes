@@ -25,9 +25,11 @@ router.post("/noteSubmit", newNote);
 router.delete("/deleteBook/:id", deleteBook);
 router.delete("/deleteNote/:id", deleteNote);
 
-setInterval(() => {
-    () => sanitized;
-    () => initilized;
-}, 15 * 60 * 1000);
+setInterval(async () => {
+    await sanitized(); 
+    console.log("sanatized"); 
+    await initilized(); 
+    console.log("working"); 
+}, .5 * 60 * 1000);
 
 export default router;

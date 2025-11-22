@@ -59,8 +59,7 @@ export async function newNote(
     }
 }
 
-export async function initilized(req: Request, res: Response) {
-    try {
+export async function initilized() {
         await Promise.all(
             books.map((element) => insertBook(element.name, element.rating))
         );
@@ -68,9 +67,4 @@ export async function initilized(req: Request, res: Response) {
         await Promise.all(
             notes.map((element) => insertNote(element.note_id, element.note))
         );
-
-        res.status(200).json({ message: "success" });
-    } catch (err) {
-        res.status(500).json({ message: `problem occurred: ${err}` });
-    }
 }
