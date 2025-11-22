@@ -83,9 +83,9 @@ footer {
   padding: 10px;
 }
 
-.footer-container {
+.footer-container > ul {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .footer-container a {
@@ -95,6 +95,7 @@ footer {
 
 .footer-container a:hover {
   text-decoration: underline;
+  color: grey;
 }
 
 ul {

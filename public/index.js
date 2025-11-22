@@ -1,4 +1,11 @@
-import { fetchUserDetail } from "./util/util.js";
+import { fetchUserDetail, url } from "./util/util.js";
+
+setInterval(() => {
+    window.location.reload();
+}, 15*60*1000);
+
+const form = document.getElementById("form"); 
+form.setAttribute("action", url+'/submit'); 
 
 const sortPost = document.querySelector("#sort"); 
 const parentDiv = document.getElementById("main");

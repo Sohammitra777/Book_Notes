@@ -1,4 +1,4 @@
-export const url = "http://localhost:3000"; 
+export const url = "https://book-notes-wh8c.onrender.com"; 
 
 async function viewContent(id) {
   window.location.href = `/noteDetail/noteDetail.html?id=${id}`;
